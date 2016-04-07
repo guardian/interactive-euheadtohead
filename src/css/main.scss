@@ -1,0 +1,51 @@
+@import "fonts";
+@import "palette";
+@import "mq";
+@import "general";
+@import "share";
+
+
+div {
+    @include fs-bodyCopy(1);
+   padding-bottom: 1em;
+}
+
+.remain {
+    display: table-cell;
+     width: 40%;
+         
+          padding-right: 1em;
+}
+
+.leave {
+    display: table-cell;
+    width: 40%;
+   
+}
+
+.topic {
+    margin-top: 1px;
+    
+}
+
+.statementswrapper {
+    display: table;
+    width: 100%;
+}
+
+#topics {
+    padding-bottom: 10px;
+   
+}
+
+.graph {
+    border: 0;
+    width:90%;
+    height: 0px;
+    
+}
+
+.toggle {
+    display: inline;
+    padding-right: 5em;
+}
