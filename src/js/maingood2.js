@@ -40,62 +40,18 @@ function makediv(varname, tagname, classname, id) {
 function usedata(resp, el) {
 
     var topics = resp.topics;
-    
-    var topicsdiv = document.getElementById("topics");
 
+    console.log(topicsdiv);
     for (var i = 0; i < topics.length; i++) {
     
     var t = topics[i];
     var tdiv = document.createElement("div");
     tdiv.innerHTML = topicHTML;
-    tdiv.innerHTML = tdiv.innerHTML.replace(/{{topicname}}/g,t.topicname)
-    .replace("{{remainstatement}}",t.remainstatement)
-    .replace("{{leavestatement}}",t.leavestatement)
-    .replace("{{analysis}}",t.analysis);
-    
-    if (t.remaintoggle) {
-    tdiv.innerHTML = tdiv.innerHTML.replace("{{remaintoggle}}",t.remaintoggle)
-    .replace("{{leavetoggle}}",t.leavetoggle);
-    }
-    
-    topicsdiv.appendChild(tdiv);  
-    startlistening(tdiv,t)
-    // give ids to toggles and graphs?
-    // call toggle listener
+        
 
     }
 }
 
-function startlistening(tdiv,t) {
-    
-    var leavetoggle = document.getElementById(`leavetoggle-${t.topicname}`);
-    var remaintoggle = document.getElementById(`remaintoggle-${t.topicname}`);
-    var graphdiv = document.getElementById(`graph-${t.topicname}`);
-    console.log(graphdiv);
-    leavetoggle.addEventListener("click", function(){
-        graphdiv.style.height = "700px";
-        graphdiv.src = t.leavegraph;   
-    })
-    remaintoggle.addEventListener("click", function(){
-        graphdiv.style.height = "700px";
-        graphdiv.src = t.remaingraph;   
-    })
-}
-
-
-/* 
-
-function listentoleavetoggle(leavetogglediv, topicdiv, graphdiv, topic) {
-    leavetogglediv.addEventListener("click", function() {
-        // console.log(topic.remaingraph);
-        graphdiv.style.height = "700px";
-        graphdiv.src = topic.leavegraph;
-        console.log(graphdiv.src);
-    })
-};
-
-
-*/
 
 function addanalysis(topicdiv, topic) {
 

@@ -40,62 +40,24 @@ function makediv(varname, tagname, classname, id) {
 function usedata(resp, el) {
 
     var topics = resp.topics;
-    
-    var topicsdiv = document.getElementById("topics");
+    var topicsdiv = getdiv(topicsdiv, "topics");
 
+    console.log(topicsdiv);
     for (var i = 0; i < topics.length; i++) {
-    
-    var t = topics[i];
-    var tdiv = document.createElement("div");
-    tdiv.innerHTML = topicHTML;
-    tdiv.innerHTML = tdiv.innerHTML.replace(/{{topicname}}/g,t.topicname)
-    .replace("{{remainstatement}}",t.remainstatement)
-    .replace("{{leavestatement}}",t.leavestatement)
-    .replace("{{analysis}}",t.analysis);
-    
-    if (t.remaintoggle) {
-    tdiv.innerHTML = tdiv.innerHTML.replace("{{remaintoggle}}",t.remaintoggle)
-    .replace("{{leavetoggle}}",t.leavetoggle);
-    }
-    
-    topicsdiv.appendChild(tdiv);  
-    startlistening(tdiv,t)
-    // give ids to toggles and graphs?
-    // call toggle listener
+        var topic = topics[i];
+
+        var topicdiv = makediv(topic, "div", "topic", `topic ${i}`)
+
+        topicdiv.innerHTML = `<h3>${topic.topicname}</h3><div class="statementswrapper"><span class="remain"><strong>Remain say:</strong> ${topic.remainstatement}</span><span class="leave"><strong>Leave say:</strong> ${topic.leavestatement}</span></div>`
+
+        topicsdiv.appendChild(topicdiv);
+        console.log(topic.analysis);
+
+        if (topic.analysis) { addanalysis(topicdiv, topic) }
 
     }
 }
 
-function startlistening(tdiv,t) {
-    
-    var leavetoggle = document.getElementById(`leavetoggle-${t.topicname}`);
-    var remaintoggle = document.getElementById(`remaintoggle-${t.topicname}`);
-    var graphdiv = document.getElementById(`graph-${t.topicname}`);
-    console.log(graphdiv);
-    leavetoggle.addEventListener("click", function(){
-        graphdiv.style.height = "700px";
-        graphdiv.src = t.leavegraph;   
-    })
-    remaintoggle.addEventListener("click", function(){
-        graphdiv.style.height = "700px";
-        graphdiv.src = t.remaingraph;   
-    })
-}
-
-
-/* 
-
-function listentoleavetoggle(leavetogglediv, topicdiv, graphdiv, topic) {
-    leavetogglediv.addEventListener("click", function() {
-        // console.log(topic.remaingraph);
-        graphdiv.style.height = "700px";
-        graphdiv.src = topic.leavegraph;
-        console.log(graphdiv.src);
-    })
-};
-
-
-*/
 
 function addanalysis(topicdiv, topic) {
 

@@ -10,6 +10,11 @@ div {
    padding-bottom: 1em;
 }
 
+span {
+    @include fs-bodyCopy(1);
+   padding-bottom: 1em;
+}
+
 .remain {
     display: table-cell;
      width: 40%;
@@ -23,7 +28,7 @@ div {
    
 }
 
-.topic {
+.topictemp {
     margin-top: 1px;
     
 }
