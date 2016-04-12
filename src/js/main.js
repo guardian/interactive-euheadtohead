@@ -3,8 +3,10 @@ import mainHTML from './text/main.html!text'
 import share from './lib/share'
 import topicHTML from './text/topic.html!text'
 var data;
+import iframeMessenger from 'guardian/iframe-messenger';
 
 var shareFn = share('Interactive title', 'http://gu.com/p/URL', '#Interactive');
+
 
 export function init(el, context, config, mediator) {
     el.innerHTML = mainHTML.replace(/%assetPath%/g, config.assetPath);
@@ -53,17 +55,71 @@ function usedata(resp, el) {
     .replace("{{leavestatement}}",t.leavestatement)
     .replace("{{analysis}}",t.analysis);
     
-    if (t.remaintoggle) {
+    if (t.remaintoggle != undefined) {
     tdiv.innerHTML = tdiv.innerHTML.replace("{{remaintoggle}}",t.remaintoggle)
-    .replace("{{leavetoggle}}",t.leavetoggle);
+    .replace("{{leavetoggle}}",t.leavetoggle)
+    .replace("{{iframesource}}",t.remaingraph);
+   
     }
     
     topicsdiv.appendChild(tdiv);  
-    startlistening(tdiv,t)
-    // give ids to toggles and graphs?
-    // call toggle listener
-
+    startlistening(tdiv,t);
+     listenforresize(tdiv,t);
     }
+}
+
+function listenforresize(tdiv,t) {
+    
+                    var iframe = document.getElementById(`graph-${t.topicname}`);
+                     
+                    window.addEventListener('message', function(event) {
+                    if (event.source !== iframe.contentWindow) {
+                        return;
+                    }
+
+                    // IE 8 + 9 only support strings
+                    var message = JSON.parse(event.data);
+
+                    // Actions
+                    switch (message.type) {
+                        case 'set-height':
+                            iframe.height = message.value;
+                            break;
+                        case 'navigate':
+                            document.location.href = message.value;
+                            break;
+                        case 'scroll-to':
+                            window.scrollTo(message.x, message.y);
+                            break;
+                        case 'get-location':
+                            _postMessage({
+                                'id':       message.id,
+                                'type':     message.type,
+                                'hash':     window.location.hash,
+                                'host':     window.location.host,
+                                'hostname': window.location.hostname,
+                                'href':     window.location.href,
+                                'origin':   window.location.origin,
+                                'pathname': window.location.pathname,
+                                'port':     window.location.port,
+                                'protocol': window.location.protocol,
+                                'search':   window.location.search
+                            }, message.id);
+                            break;
+                        case 'get-position':
+                            _postMessage({
+                                'id':           message.id,
+                                'type':         message.type,
+                                'iframeTop':    iframe.getBoundingClientRect().top,
+                                'innerHeight':  window.innerHeight,
+                                'innerWidth':   window.innerWidth,
+                                'pageYOffset':  window.pageYOffset
+                            });
+                            break;
+                        default:
+                        //   console.error('Received unknown action from iframe: ', message);
+                    }
+                }, false);
 }
 
 function startlistening(tdiv,t) {
@@ -71,74 +127,12 @@ function startlistening(tdiv,t) {
     var leavetoggle = document.getElementById(`leavetoggle-${t.topicname}`);
     var remaintoggle = document.getElementById(`remaintoggle-${t.topicname}`);
     var graphdiv = document.getElementById(`graph-${t.topicname}`);
-    console.log(graphdiv);
     leavetoggle.addEventListener("click", function(){
-        graphdiv.style.height = "700px";
         graphdiv.src = t.leavegraph;   
     })
     remaintoggle.addEventListener("click", function(){
-        graphdiv.style.height = "700px";
         graphdiv.src = t.remaingraph;   
     })
 }
 
-
-/* 
-
-function listentoleavetoggle(leavetogglediv, topicdiv, graphdiv, topic) {
-    leavetogglediv.addEventListener("click", function() {
-        // console.log(topic.remaingraph);
-        graphdiv.style.height = "700px";
-        graphdiv.src = topic.leavegraph;
-        console.log(graphdiv.src);
-    })
-};
-
-
-*/
-
-function addanalysis(topicdiv, topic) {
-
-    var analysisdiv = makediv(analysisdiv, "div", "analysis", topic.topicname);
-    analysisdiv.innerHTML = `<strong>Analysis:</strong> ${topic.analysis}`;
-    topicdiv.appendChild(analysisdiv);
-    if (topic.remaingraph) {
-        addgraphs(topicdiv, topic);
-    }
-
-}
-
-function addgraphs(topicdiv, topic) {
-    var graphwrapper = makediv(graphwrapper, "div", "graphwrapper", topic.topicname + "graphs");
-    var remaintogglediv = makediv(remaintogglediv, "div", "toggle", topic.topicname);
-    var leavetogglediv = makediv(leavetogglediv, "div", "toggle", topic.topicname);
-    var graphdiv = makediv(graphdiv, "iframe", "graph", topic.topicnamegraph);
-    remaintogglediv.innerHTML = topic.remaintoggle;
-    leavetogglediv.innerHTML = topic.leavetoggle;
-
-    topicdiv.appendChild(remaintogglediv);
-    topicdiv.appendChild(leavetogglediv);
-
-    topicdiv.appendChild(graphwrapper);
-    topicdiv.appendChild(graphdiv);
-    listentoleavetoggle(leavetogglediv, topicdiv, graphdiv, topic);
-    listentoremaintoggle(remaintogglediv, topicdiv, graphdiv, topic);
-}
-
-function listentoremaintoggle(remaintogglediv, topicdiv, graphdiv, topic) {
-    remaintogglediv.addEventListener("click", function() {
-        // console.log(topic.remaingraph);
-        graphdiv.style.height = "550px";
-        graphdiv.src = topic.remaingraph;
-        console.log(graphdiv.src);
-    })
-};
-
-function listentoleavetoggle(leavetogglediv, topicdiv, graphdiv, topic) {
-    leavetogglediv.addEventListener("click", function() {
-        // console.log(topic.remaingraph);
-        graphdiv.style.height = "700px";
-        graphdiv.src = topic.leavegraph;
-        console.log(graphdiv.src);
-    })
-};
+iframeMessenger.enableAutoResize();

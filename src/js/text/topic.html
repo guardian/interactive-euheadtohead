@@ -7,8 +7,10 @@
     </div>
     <div class="analysis">{{analysis}}</div>
     <div class="graphwrapper">
-        <div class="toggle remain" id="remaintoggle-{{topicname}}">{{remaintoggle}}</div><div class="toggle leave" id="leavetoggle-{{topicname}}">{{leavetoggle}}</div>
-       <iframe class="graph" id="graph-{{topicname}}"></iframe>
+        <div class="toggle remain button" id="remaintoggle-{{topicname}}">{{remaintoggle}}</div><div class="toggle leave" id="leavetoggle-{{topicname}}">{{leavetoggle}}</div>
+        <div class="iframewrapper">
+       <iframe class="graph" id="graph-{{topicname}}" src="{{iframesource}}"></iframe>
+       <div>
     </div>
     
 </div>

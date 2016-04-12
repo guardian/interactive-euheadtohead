@@ -17,9 +17,8 @@ span {
 
 .remain {
     display: table-cell;
-     width: 40%;
-         
-          padding-right: 1em;
+    width: 40%;
+    padding-right: 1em;
 }
 
 .leave {
@@ -43,14 +42,23 @@ span {
    
 }
 
+
 .graph {
+    margin-top: 2em;
     border: 0;
-    width:90%;
-    height: 0px;
-    
+    width: 100%;
 }
 
 .toggle {
     display: inline;
-    padding-right: 5em;
+    height: 36px;
+    font-family: Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 3px 18px 3px;
+    outline: none;
+    border-color: red;
+    border-radius: 36px;
+    cursor: pointer;
+    background-color:lightgrey;
 }
