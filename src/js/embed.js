@@ -7,8 +7,7 @@ var topicid;
 window.init = function init(el, config) {
     iframeMessenger.enableAutoResize();
     var options = getParameterByName("topicid"); 
-    console.log(options);
-
+   
     el.innerHTML = embedHTML;
 
        reqwest({
@@ -23,9 +22,15 @@ window.init = function init(el, config) {
 
 
 function usedata(resp,el,options) {
-
-
-    
+    var selldiv = document.getElementById("sell");
+    var topics = resp.topics;
+    topics.forEach(function(t) {
+        if (t.topicname == options) {
+            console.log(t.topicname)
+            console.log(document);
+            selldiv.innerHTML = t.topicsell;
+        }
+    }, this);
     
 }
 
