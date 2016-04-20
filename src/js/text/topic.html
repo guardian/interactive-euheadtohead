@@ -1,16 +1,14 @@
 <div class="topictemp" id="topic-{{topicname}}">
-    
+
     <h3 id="topicname">{{topicname}}</h3>
-        <div class="statementswrapper">
-            <span class="remain"><strong>Remain say:</strong> {{remainstatement}}</span>
-            <span class="leave"><strong>Leave say:</strong> {{leavestatement}}</span>
+    <div class="statementswrapper">
+        <span class="remain"><strong>Remain say:</strong> {{remainstatement}}</span>
+        <span class="leave"><strong>Leave say:</strong> {{leavestatement}}</span>
     </div>
     <div class="analysis">{{analysis}}</div>
     <div class="graphwrapper">
-        <div class="toggle remain button" id="remaintoggle-{{topicname}}">{{remaintoggle}}</div><div class="toggle leave" id="leavetoggle-{{topicname}}">{{leavetoggle}}</div>
-        <div class="iframewrapper">
-       <iframe class="graph" id="graph-{{topicname}}" src="{{iframesource}}"></iframe>
-       <div>
+        <div class="graph active" id="{{topicname}}one"></div>
+        <div class="graph inactive" id="{{topicname}}two"></div>
     </div>
-    
+
 </div>

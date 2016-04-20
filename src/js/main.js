@@ -1,22 +1,42 @@
 import reqwest from 'reqwest'
+//import require from 'npm:requirejs'
 import mainHTML from './text/main.html!text'
 import share from './lib/share'
 import topicHTML from './text/topic.html!text'
 var data;
-import iframeMessenger from 'guardian/iframe-messenger';
+import iframeMessenger from 'guardian/iframe-messenger'
+import getGraph from './lib/graph'
 
 var shareFn = share('Interactive title', 'http://gu.com/p/URL', '#Interactive');
 
+
+function navlistener() {
+    var topiclist = document.getElementById("topiclist");
+    var topicitems =  Array.prototype.slice.call(topiclist.childNodes);
+    topicitems.forEach(function(tn) {
+     //   console.log(tn);
+        tn.addEventListener("click",function (){highlightTopic(tn.id)});
+    }, this);
+    
+   }
+
+function highlightTopic(id) {
+    console.log(id);
+    var grab = document.getElementById(`topic-${id}`);
+    console.log(grab);
+    var highlightdiv = document.getElementById("highlighted");
+    highlighted.innerHTML = grab.innerHTML;
+}
 
 export function init(el, context, config, mediator) {
     el.innerHTML = mainHTML.replace(/%assetPath%/g, config.assetPath);
 
     reqwest({
-        url: 'http://interactive.guim.co.uk/docsdata-test/1ZstSkj9MqXTlxTxNfcZ6rvvvDxMOAG-pt0eWS5b-TBw.json',
+        url: 'http://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
         type: 'json',
         crossOrigin: true,
         success: function (resp) {
-            usedata(resp, el);
+            usedata(resp, el, config);
         }
     });
 
@@ -39,7 +59,7 @@ function makediv(varname, tagname, classname, id) {
 }
 
 
-function usedata(resp, el) {
+function usedata(resp,el,config) {
 
     var topics = resp.topics;
 
@@ -62,94 +82,22 @@ function usedata(resp, el) {
             .replace("{{leavestatement}}", t.leavestatement)
             .replace("{{analysis}}", t.analysis);
 
-        if (t.remaintoggle != undefined) {
-            tdiv.innerHTML = tdiv.innerHTML.replace("{{remaintoggle}}", t.remaintoggle)
-                .replace("{{leavetoggle}}", t.leavetoggle)
-                .replace("{{iframesource}}", t.remaingraph);
-
-        }
-
-
         topicsdiv.appendChild(tdiv);
-        startlistening(tdiv, t);
-        listenforresize(tdiv, t);
-    }
+        pullInGraph(tdiv,t,config);
+   }
     navlistener();
 }
 
-function navlistener() {
-    var topiclist = document.getElementById("topiclist");
-    var topicitems =  Array.prototype.slice.call(topiclist.childNodes);
-    topicitems.forEach(function(tn) {
-     //   console.log(tn);
-        tn.addEventListener("click",function (){highlightTopic(tn.id)});
-    }, this);
-    
-   }
-
-function highlightTopic(id) {
-    console.log(id);
-    var grab = document.getElementById(`topic-${id}`);
-    console.log(grab);
-    var highlightdiv = document.getElementById("highlighted");
-    highlighted.innerHTML = grab.innerHTML;
+function pullInGraph(tdiv,t,config) {
+    console.log(t.graphone);
+    var graph1HTML = getGraph(t.graphone);
+    var graph2HTML = getGraph(t.graphtwo);
+    var graphdiv1 = document.getElementById(`${t.topicname}one`);
+    var graphdiv2 = document.getElementById(`${t.topicname}two`);
+    graphdiv1.innerHTML = graph1HTML;
+    graphdiv2.innerHTML = graph2HTML;
 }
 
-
-
-function listenforresize(tdiv, t) {
-
-    var iframe = document.getElementById(`graph-${t.topicname}`);
-
-    window.addEventListener('message', function (event) {
-        if (event.source !== iframe.contentWindow) {
-            return;
-        }
-
-        // IE 8 + 9 only support strings
-        var message = JSON.parse(event.data);
-
-        // Actions
-        switch (message.type) {
-            case 'set-height':
-                iframe.height = message.value;
-                break;
-            case 'navigate':
-                document.location.href = message.value;
-                break;
-            case 'scroll-to':
-                window.scrollTo(message.x, message.y);
-                break;
-            case 'get-location':
-                _postMessage({
-                    'id': message.id,
-                    'type': message.type,
-                    'hash': window.location.hash,
-                    'host': window.location.host,
-                    'hostname': window.location.hostname,
-                    'href': window.location.href,
-                    'origin': window.location.origin,
-                    'pathname': window.location.pathname,
-                    'port': window.location.port,
-                    'protocol': window.location.protocol,
-                    'search': window.location.search
-                }, message.id);
-                break;
-            case 'get-position':
-                _postMessage({
-                    'id': message.id,
-                    'type': message.type,
-                    'iframeTop': iframe.getBoundingClientRect().top,
-                    'innerHeight': window.innerHeight,
-                    'innerWidth': window.innerWidth,
-                    'pageYOffset': window.pageYOffset
-                });
-                break;
-            default:
-            //   console.error('Received unknown action from iframe: ', message);
-        }
-    }, false);
-}
 
 function startlistening(tdiv, t) {
 
@@ -163,5 +111,3 @@ function startlistening(tdiv, t) {
         graphdiv.src = t.remaingraph;
     })
 }
-
-iframeMessenger.enableAutoResize();

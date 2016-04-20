@@ -43,22 +43,42 @@ span {
 }
 
 
+.inactive {
+    opacity: 0;
+    animation-name:fadein;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.active {
+    opacity: 1;
+    animation-name: fadeout;
+    animation-duration: 4s;
+        animation-iteration-count: infinite;
+
+}
+
+.graphwrapper {
+    position: relative;
+    height:600px;
+}
+
 .graph {
-    margin-top: 2em;
-    border: 0;
+    position: absolute;
+    top: 250;
     width: 100%;
 }
 
-.toggle {
-    display: inline;
-    height: 36px;
-    font-family: Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 3px 18px 3px;
-    outline: none;
-    border-color: red;
-    border-radius: 36px;
-    cursor: pointer;
-    background-color:lightgrey;
+#play {
+    height: 700px;
+}
+
+@keyframes fadeout {
+    from {opacity: 1}
+    to {opacity: 0} 
+}
+
+@keyframes fadein {
+    from {opacity: 0}
+    to {opacity: 1} 
 }
