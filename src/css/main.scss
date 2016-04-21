@@ -45,17 +45,14 @@ span {
 
 .inactive {
     opacity: 0;
-    animation-name:fadein;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-}
+    z-index: 2;
+   }
 
 .active {
+    z-index:1;
     opacity: 1;
-    animation-name: fadeout;
+    animation-name: fadein;
     animation-duration: 4s;
-        animation-iteration-count: infinite;
-
 }
 
 .graphwrapper {
