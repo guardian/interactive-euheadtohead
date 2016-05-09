@@ -32,7 +32,7 @@ export function init(el, context, config, mediator) {
     el.innerHTML = mainHTML.replace(/%assetPath%/g, config.assetPath);
 
     reqwest({
-        url: 'http://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
+        url: 'https://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
         type: 'json',
         crossOrigin: true,
         success: function (resp) {
@@ -100,6 +100,8 @@ function scrollListener(topicsdiv) {
     tdivs.forEach(function(tdiv) {
        var divbefore = tdiv.querySelector("div.before");
        var divafter = tdiv.querySelector("div.after");
+       
+       
        var offset = divbefore.getBoundingClientRect().top;
        var graphheight = divbefore.getBoundingClientRect().height;
        if (  offset < ((port/2) - (graphheight/2))  && divbefore.className == "graph before active" ) {
@@ -123,8 +125,12 @@ function pullInGraph(tdiv,t,config) {
     var graph2HTML = getGraph(t.graphtwo);
     var graphdiv1 = document.getElementById(`${t.topicname}one`);
     var graphdiv2 = document.getElementById(`${t.topicname}two`);
+    var graphheading1 = document.getElementById(`${t.topicname}headingone`);
+    var graphheading2 = document.getElementById(`${t.topicname}headingtwo`);
     graphdiv1.innerHTML = graph1HTML;
     graphdiv2.innerHTML = graph2HTML;
+    graphheading1.innerHTML = graphheading1.innerHTML.replace('-',t.graphonetitle);
+    graphheading2.innerHTML = graphheading2.innerHTML.replace('-',t.graphtwotitle);
 }
 
 
