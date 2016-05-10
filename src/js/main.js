@@ -74,20 +74,3 @@ function pullInGraph(t) {
     t.graph1HTML = getGraph(t.graphone);
     t.graph2HTML = getGraph(t.graphtwo);
 }
-
-
-/*
-function startlistening(tdiv, t) {
-
-    var leavetoggle = document.getElementById(`leavetoggle-${t.topicname}`);
-    var remaintoggle = document.getElementById(`remaintoggle-${t.topicname}`);
-    var graphdiv = document.getElementById(`graph-${t.topicname}`);
-    leavetoggle.addEventListener("click", function () {
-        graphdiv.src = t.leavegraph;
-    })
-    remaintoggle.addEventListener("click", function () {
-        graphdiv.src = t.remaingraph;
-    })
-}
-
-*/
