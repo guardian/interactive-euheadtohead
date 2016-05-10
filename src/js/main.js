@@ -32,13 +32,15 @@ export function init(el, context, config, mediator) {
 function usedata(resp, el, config) {
     var topics = resp.topics;
 
-    var topic = "topic";
-    console.log(topic);
-    el.innerHTML = swig.render(mainHTML, { locals: {topics: topics }});
-    // scrollListener(topicsdiv);
+    topics.forEach(function (t) {
+        pullInGraph(t);
+    }, this);
+
+    el.innerHTML = swig.render(mainHTML, { locals: { topics: topics } });
+    scrollListener();
 }
 
-function scrollListener(topicsdiv) {
+function scrollListener() {
     window.onscroll = function () {
         var port = window.innerHeight;
 
@@ -68,13 +70,9 @@ function scrollListener(topicsdiv) {
 }
 
 
-function pullInGraph(tdiv, t, config) {
-    var graph1HTML = getGraph(t.graphone);
-    var graph2HTML = getGraph(t.graphtwo);
-    var graphdiv1 = document.getElementById(`${t.topicname}one`);
-    var graphdiv2 = document.getElementById(`${t.topicname}two`);
-    graphdiv1.innerHTML = graph1HTML;
-    graphdiv2.innerHTML = graph2HTML;
+function pullInGraph(t) {
+    t.graph1HTML = getGraph(t.graphone);
+    t.graph2HTML = getGraph(t.graphtwo);
 }
 
 

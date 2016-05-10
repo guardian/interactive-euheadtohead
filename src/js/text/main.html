@@ -9,7 +9,28 @@
 
     <div class="topics" id="topics">
       {% for topic in topics %}
-      <p>{{topic.topicname}}</p>
+      <div class="topic" id="topic-{{topic.topicname}}">
+
+    <h3 id="topicname">{{topic.description}}</h3>
+    <div class="statementswrapper">
+        <span class="remain"><strong>Remain say:</strong> {{topic.remainstatement}}</span>
+        <span class="leave"><strong>Leave say:</strong> {{topic.leavestatement}}</span>
+    </div>
+    <div class="analysis">{{topic.analysis}}</div>
+    <div class="graphwrapper">
+        <div class="graph active before" id="{{topicname}}one">
+            {% autoescape false %}
+            {{ topic.graph1HTML }}
+            {% endautoescape %}
+        </div>
+        <div class="graph inactive after" id="{{topicname}}two"> 
+            {% autoescape false %}
+            {{ topic.graph2HTML }}
+            {% endautoescape %}
+        </div>
+    </div>
+
+</div>
       {% endfor %}
 
      </div>
