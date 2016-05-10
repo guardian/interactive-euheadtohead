@@ -32,6 +32,7 @@
       "require": "npm:require@^2.4.20",
       "requirejs": "npm:requirejs@^2.2.0",
       "reqwest": "github:ded/reqwest@^1.1.5",
+      "swig": "npm:swig@^1.4.2",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
     "devDependencies": {
@@ -41,6 +42,7 @@
   },
   "dependencies": {
     "jspm": "^0.16.31",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "swig": "^1.4.2"
   }
 }

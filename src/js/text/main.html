@@ -1,13 +1,17 @@
 <div class="interactive-container">
     <h2 class="interactive-es6-headline">Leave or remain? What do the camps say?</h2>
-
-    <div class="topics" id="topics">
-        <div class="topiclist" id="topiclist"></div>
-        <div class="highlighted" id="highlighted"></div>
-    </div>
-
+    
+    <div class = "sharing">
         <button class="interactive-share" data-network="facebook"></button>
         <button class="interactive-share" data-network="twitter"></button>
         <button class="interactive-share" data-network="email"></button>
-    </p>
+    </div>
+
+    <div class="topics" id="topics">
+      {% for topic in topics %}
+      <p>{{topic.topicname}}</p>
+      {% endfor %}
+
+     </div>
+
 </div>
