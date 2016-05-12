@@ -5,82 +5,95 @@
 @import "share";
 
 
+em {
+    font-style: normal;
+    font-weight: 500;
+}
+
 div {
     @include fs-bodyCopy(1);
    padding-bottom: 1em;
 }
 
-span {
+h4 {
+    margin-bottom: 2px;
+}
+
+.attribution {
     @include fs-bodyCopy(1);
-   padding-bottom: 1em;
+    font-size:0.9em;
 }
 
-.remain {
-    display: table-cell;
-    width: 40%;
-    padding-right: 1em;
-}
-
-.leave {
-    display: table-cell;
-    width: 40%;
+.quote {
+    @include fs-bodyCopy(3);
+     color: grey;
+     margin-bottom: 0.5em;
+     margin-top: 0px;
    
 }
 
-.topictemp {
-    margin-top: 1px;
-    
+.statementswrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2em;
 }
 
-.statementswrapper {
-    display: table;
-    width: 100%;
+.remain {
+    flex: 1;
+   }
+
+.remain em {
+    color: #197caa;
 }
+
+.leave em {
+    color: #b82266;
+}
+
+.leave {
+  flex: 1;
+  margin-right: 2em;
+}
+
+.remain-header {
+    color: #197caa;
+}
+
+.leave-header {
+    color: #b82266;
+}
+
+
 
 #topics {
     padding-bottom: 10px;
    
 }
 
+.analysiswrapper{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
 
-.inactive {
-    opacity: 0;
-    z-index: 2;
-   }
+.analysiskicker {
+    background-color: #FFFF99;
+    font-weight: 300;
+}
 
-.active {
-    z-index:1;
-    opacity: 1;
-    animation-name: fadein;
-    animation-duration: 4s;
+.analysisheader {
+    font-weight: 700;
+}
+
+.analysistextwrapper {
+     flex: 1;
+     min-width: 15em;
+     padding-right: 1em;
 }
 
 .graphwrapper {
-    position: relative;
-    height:600px;
-}
-
-.graph {
-    position: absolute;
-    top: 250;
-    width: 100%;
-}
-
-.graphtwo {
-    padding-top: 10px;
-    float: right
-}
-
-#play {
-    height: 700px;
-}
-
-@keyframes fadeout {
-    from {opacity: 1}
-    to {opacity: 0} 
-}
-
-@keyframes fadein {
-    from {opacity: 0}
-    to {opacity: 1} 
+    flex: 2;
+    min-width: 380px;
+    background-color: grey;
+    min-height: 150px;
 }

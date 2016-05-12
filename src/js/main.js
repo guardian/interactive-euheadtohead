@@ -37,7 +37,7 @@ function usedata(resp, el, config) {
     }, this);
 
     el.innerHTML = swig.render(mainHTML, { locals: { topics: topics } });
-    scrollListener();
+//   scrollListener();
 }
 
 function scrollListener() {

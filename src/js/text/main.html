@@ -1,38 +1,38 @@
 <div class="interactive-container">
     <h2 class="interactive-es6-headline">Leave or remain? What do the camps say?</h2>
-    
-    <div class = "sharing">
+
+    <div class="sharing">
         <button class="interactive-share" data-network="facebook"></button>
         <button class="interactive-share" data-network="twitter"></button>
         <button class="interactive-share" data-network="email"></button>
     </div>
 
     <div class="topics" id="topics">
-      {% for topic in topics %}
-      <div class="topic" id="topic-{{topic.topicname}}">
+        {% for topic in topics %}
+        <div class="topic" id="topic-{{topic.topicname}}">
 
-    <h3 id="topicname">{{topic.description}}</h3>
-    <div class="statementswrapper">
-        <span class="remain"><strong>Remain say:</strong> {{topic.remainstatement}}</span>
-        <span class="leave"><strong>Leave say:</strong> {{topic.leavestatement}}</span>
-    </div>
-    <div class="analysis">{{topic.analysis}}</div>
-    <div class="graphwrapper">
-        <div class="graph active before" id="{{topicname}}one">
-            {% autoescape false %}
-            {{ topic.graph1HTML }}
-            {% endautoescape %}
+            <h3 id="topicname">{{topic.description}}</h3>
+            <div class="statementswrapper">
+                <span class="leave">
+                    <h4 class="leave-header">The leave position</h4>
+                    <p class="quote leave"> {% autoescape false %}{{topic.leavestatement}}</p><span class="attribution">{{topic.leaveattribution}}</span></span>
+                <span class="remain">
+                    <h4 class="remain-header">The remain position</h4><p class="quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="attribution">{{topic.remainattribution}}</span></span>
+            </div>
+            <div class="analysiswrapper">
+                <div class="analysistextwrapper">
+                    <div class="analysisheader"><span class="analysiskicker">Kicker goes here</span> Followed by the rest of the anaylsis header</div>
+                    <div class="analysis">{{topic.analysis}}</div>
+                </div>
+                
+                <div class="graphwrapper"></div>
+                
+            </div>
         </div>
-        <div class="graph inactive after" id="{{topicname}}two"> 
-            {% autoescape false %}
-            {{ topic.graph2HTML }}
-            {% endautoescape %}
-        </div>
+
     </div>
+    {% endfor %}
 
 </div>
-      {% endfor %}
-
-     </div>
 
 </div>
