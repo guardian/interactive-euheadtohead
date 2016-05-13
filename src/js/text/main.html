@@ -15,13 +15,13 @@
             <div class="statementswrapper">
                 <span class="leave">
                     <h4 class="leave-header">The leave position</h4>
-                    <p class="quote leave"> {% autoescape false %}{{topic.leavestatement}}</p><span class="attribution">{{topic.leaveattribution}}</span></span>
+                    <p class="quote leave">{% autoescape false %}{{topic.leavestatement}}</p><span class="attribution"><a class="source button button--small button--tertiary" href="{{topic.leavestatementsource}}" target="_blank">{{topic.leaveattribution}} </a></span></span>
                 <span class="remain">
-                    <h4 class="remain-header">The remain position</h4><p class="quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="attribution">{{topic.remainattribution}}</span></span>
+                    <h4 class="remain-header">The remain position</h4><p class="quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="attribution"><a class="source button button--small button--tertiary" href="{{topic.remainstatementsource}}" target="_blank">{{topic.remainattribution}} </a></span></span>
             </div>
             <div class="analysiswrapper">
                 <div class="analysistextwrapper">
-                    <div class="analysisheader"><span class="analysiskicker">Kicker goes here</span> Followed by the rest of the anaylsis header</div>
+                    <div class="analysisheader"><span class="analysiskicker">{{topic.analysiskicker}}</span> {{topic.analysisheader}}</div>
                     <div class="analysis">{{topic.analysis}}</div>
                 </div>
                 
@@ -29,10 +29,8 @@
                 
             </div>
         </div>
-
-    </div>
     {% endfor %}
+    </div>
 
-</div>
-
+<div class="credits">Credits: <a href="https://www.theguardian.com/profile/pamela-duncan">Pamela Duncan</a> and <a href="https://www.theguardian.com/profile/seanclarke">Seán Clarke</a></div>
 </div>

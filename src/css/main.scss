@@ -7,7 +7,6 @@
 
 em {
     font-style: normal;
-    font-weight: 500;
 }
 
 div {
@@ -25,21 +24,36 @@ h4 {
 }
 
 .quote {
-    @include fs-bodyCopy(3);
+     line-height: 1.2em !important;
+     @include fs-headline(3);
      color: grey;
      margin-bottom: 0.5em;
      margin-top: 0px;
-   
+     font-weight: 200;
+     font-size: 1.8em; 
 }
+
+.source::after {
+    content: "";
+    display: inline-block;
+    background: url("http://interactive.guim.co.uk/2015/03/policy-grid/assets-1429714493568/imgs/external.svg") no-repeat center;
+    background-size: contain;
+    margin-left: 5px;
+    width: 16px;
+    height: 10px;
+} 
 
 .statementswrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding-bottom: 2em;
 }
 
 .remain {
     flex: 1;
+        min-width: 220px;
+
    }
 
 .remain em {
@@ -53,6 +67,8 @@ h4 {
 .leave {
   flex: 1;
   margin-right: 2em;
+      min-width: 220px;
+
 }
 
 .remain-header {
@@ -77,7 +93,7 @@ h4 {
 }
 
 .analysiskicker {
-    background-color: #FFFF99;
+    background-color: peachpuff;
     font-weight: 300;
 }
 

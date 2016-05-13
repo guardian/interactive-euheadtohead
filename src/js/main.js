@@ -31,46 +31,5 @@ export function init(el, context, config, mediator) {
 
 function usedata(resp, el, config) {
     var topics = resp.topics;
-
-    topics.forEach(function (t) {
-        pullInGraph(t);
-    }, this);
-
     el.innerHTML = swig.render(mainHTML, { locals: { topics: topics } });
-//   scrollListener();
-}
-
-function scrollListener() {
-    window.onscroll = function () {
-        var port = window.innerHeight;
-
-        // get offset for each topic
-        var tdivs = Array.prototype.slice.call(document.querySelectorAll("div.graphwrapper"));
-
-        tdivs.forEach(function (tdiv) {
-            var divbefore = tdiv.querySelector("div.before");
-            var divafter = tdiv.querySelector("div.after");
-
-
-            var offset = divbefore.getBoundingClientRect().top;
-            var graphheight = divbefore.getBoundingClientRect().height;
-            if (offset < ((port / 2) - (graphheight / 2)) && divbefore.className == "graph before active") {
-                // switch classes on visible topic
-                divbefore.className = "graph before inactive";
-                divafter.className = "graph after active";
-
-            } else if (offset > ((port / 2) - (graphheight / 2))) {
-
-                divbefore.className = "graph before active";
-                divafter.className = "graph after inactive";
-
-            }
-        }, this)
-    }
-}
-
-
-function pullInGraph(t) {
-    t.graph1HTML = getGraph(t.graphone);
-    t.graph2HTML = getGraph(t.graphtwo);
 }
