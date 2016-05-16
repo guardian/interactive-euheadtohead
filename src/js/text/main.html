@@ -25,11 +25,15 @@
                     <div class="euref-analysis">{{topic.analysis}}</div>
                 </div>
                 
-                <div class="graphwrapper"></div>
-                
+                <div class="graphwrapper">
+                    
+                    <iframe frameborder="0" src="{{topic.graphurl}}"></iframe>
+                    
+                </div>
+    
             </div>
         </div>
     {% endfor %}
     </div>
 
-<div class="credits">{{content.credits}}</div>
+<div class="credits">{% autoescape false %}{{content.credits}}{% endautoescape%}</div>

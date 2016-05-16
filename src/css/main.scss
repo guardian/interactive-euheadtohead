@@ -105,6 +105,9 @@ h4 {
 .graphwrapper {
     flex: 2;
     min-width: 380px;
-    background-color: grey;
     min-height: 150px;
+}
+
+iframe {
+    width: 100%;
 }
