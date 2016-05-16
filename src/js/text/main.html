@@ -1,5 +1,5 @@
 <div class="interactive-container">
-    <h2 class="interactive-es6-headline">Leave or remain? What do the camps say?</h2>
+    <h2 class="interactive-es6-headline">{{content.headline}}</h2>
 
     <div class="sharing">
         <button class="interactive-share" data-network="facebook"></button>
@@ -7,22 +7,22 @@
         <button class="interactive-share" data-network="email"></button>
     </div>
 
-    <div class="topics" id="topics">
-        {% for topic in topics %}
-        <div class="topic" id="topic-{{topic.topicname}}">
+    <div class="euref-topics">
+        {% for topic in content.topics %}
+        <div class="euref-topic" id="topic-{{topic.topicname}}">
 
             <h3 id="topicname">{{topic.description}}</h3>
             <div class="statementswrapper">
                 <span class="leave">
                     <h4 class="leave-header">The leave position</h4>
-                    <p class="quote leave">{% autoescape false %}{{topic.leavestatement}}</p><span class="attribution"><a class="source button button--small button--tertiary" href="{{topic.leavestatementsource}}" target="_blank">{{topic.leaveattribution}} </a></span></span>
+                    <p class="euref-quote leave">{% autoescape false %}{{topic.leavestatement}}</p><span class="euref-attribution"><a class="euref-source button button--small button--tertiary" href="{{topic.leavestatementsource}}" target="_blank">{{topic.leaveattribution}} </a></span></span>
                 <span class="remain">
-                    <h4 class="remain-header">The remain position</h4><p class="quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="attribution"><a class="source button button--small button--tertiary" href="{{topic.remainstatementsource}}" target="_blank">{{topic.remainattribution}} </a></span></span>
+                    <h4 class="remain-header">The remain position</h4><p class="euref-quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="euref-attribution"><a class="euref-source button button--small button--tertiary" href="{{topic.remainstatementsource}}" target="_blank">{{topic.remainattribution}} </a></span></span>
             </div>
             <div class="analysiswrapper">
                 <div class="analysistextwrapper">
                     <div class="analysisheader"><span class="analysiskicker">{{topic.analysiskicker}}</span> {{topic.analysisheader}}</div>
-                    <div class="analysis">{{topic.analysis}}</div>
+                    <div class="euref-analysis">{{topic.analysis}}</div>
                 </div>
                 
                 <div class="graphwrapper"></div>
@@ -32,5 +32,4 @@
     {% endfor %}
     </div>
 
-<div class="credits">Credits: <a href="https://www.theguardian.com/profile/pamela-duncan">Pamela Duncan</a> and <a href="https://www.theguardian.com/profile/seanclarke">Seán Clarke</a></div>
-</div>
+<div class="credits">{{content.credits}}</div>

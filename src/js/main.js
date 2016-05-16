@@ -30,6 +30,6 @@ export function init(el, context, config, mediator) {
 }
 
 function usedata(resp, el, config) {
-    var topics = resp.topics;
-    el.innerHTML = swig.render(mainHTML, { locals: { topics: topics } });
+//    var topics = resp.topics;
+    el.innerHTML = swig.render(mainHTML, { locals: { content: resp } });
 }
