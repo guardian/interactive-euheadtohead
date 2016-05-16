@@ -30,6 +30,7 @@ export function init(el, context, config, mediator) {
 }
 
 function usedata(resp, el, config) {
+  //  var mainHTML3 = mainHTML.replace(/%assetPath%/g,config.assetPath);
     el.innerHTML = swig.render(mainHTML, { locals: { content: resp } });
     ai2htmlscript();
     listenforresize(el);
