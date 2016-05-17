@@ -4,6 +4,10 @@
 @import "general";
 @import "share";
 
+.euref-topics {
+    --leave-accent: #197caa;
+    --remain-accent: #ff9b0b;
+}
 
 em {
     font-style: normal;
@@ -14,8 +18,31 @@ div {
    padding-bottom: 1em;
 }
 
+h1 {
+    @include fs-headline(3);
+    font-size: 2.5em;
+    line-height: 1em;
+    font-weight: 300;
+    
+    @media (max-width: 500px) {
+        font-size: 32px;
+        line-height: 34px;
+    }
+}
+
+h2 {
+    @include fs-headline(2);
+    color: #767676;
+    font-weight: 300;
+}
+
 h4 {
     margin-bottom: 2px;
+}
+
+
+.contents {
+    max-width:740px; 
 }
 
 .euref-attribution {
@@ -31,6 +58,7 @@ h4 {
      margin-top: 0px;
      font-weight: 200;
      font-size: 1.8em; 
+
 }
 
 .euref-source::after {
@@ -52,39 +80,51 @@ h4 {
 
 .remain {
     flex: 1;
-        min-width: 220px;
-
+    min-width: 220px;
    }
+   
+.euref-cell.remain {
+    @media (min-width:500px) {
+    border-left: 1px solid lightgrey;
+    padding-left: 15px;
+    }
+}
 
 .remain em {
-    color: #197caa;
+    color: var(--remain-accent);
 }
 
 .leave em {
-    color: #b82266;
+    color: var(--leave-accent);
 }
 
 .leave {
   flex: 1;
   margin-right: 2em;
-      min-width: 220px;
-
+  min-width: 220px;
 }
 
 .remain-header {
-    color: #197caa;
+
+  color: var(--remain-accent);    
+
+
+/*  
+color: #ffbb00;
+
+*/
 }
 
 .leave-header {
+    color: var(--leave-accent);
+/*
     color: #b82266;
+*/
 }
-
-
 
 .analysiswrapper{
     display: flex;
-    flex-wrap: wrap;
-    
+    flex-wrap: wrap;    
 }
 
 .analysiskicker {
