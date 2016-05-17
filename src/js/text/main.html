@@ -15,11 +15,13 @@
 
             <h3 id="topicname">{{topic.description}}</h3>
             <div class="statementswrapper">
+               
                 <div class="leave euref-cell">
                     <h4 class="leave-header">The leave position</h4>
-                    <p class="euref-quote leave">{% autoescape false %}{{topic.leavestatement}}</p><span class="euref-attribution"><a class="euref-source button button--small button--tertiary" href="{{topic.leavestatementsource}}" target="_blank">{{topic.leaveattribution}} </a></span></div>
+                    <p class="euref-quote leave">{% autoescape false %}{{topic.leavestatement}}</p><span class="euref-attribution"><a class="euref-source" href="{{topic.leavestatementsource}}" target="_blank">{{topic.leaveattribution}} </a></span></div>
+              
                 <div class="remain euref-cell">
-                    <h4 class="remain-header">The remain position</h4><p class="euref-quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="euref-attribution"><a class="euref-source button button--small button--tertiary" href="{{topic.remainstatementsource}}" target="_blank">{{topic.remainattribution}} </a></span></div>
+                    <h4 class="remain-header">The remain position</h4><p class="euref-quote remain"> {{topic.remainstatement}}{% endautoescape %}</p><span class="euref-attribution"><a class="euref-source" href="{{topic.remainstatementsource}}" target="_blank">{{topic.remainattribution}} </a></span></div>
             </div>
             <div class="analysiswrapper">
                 <div class="analysistextwrapper">
