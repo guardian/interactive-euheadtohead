@@ -1,9 +1,7 @@
 import reqwest from 'reqwest'
 import mainHTML from './text/main.html!text'
 import share from './lib/share'
-import ai2htmlscript from './lib/ai2htmlscript'
 import iframeMessenger from 'guardian/iframe-messenger'
-//import getGraph from './lib/graph'
 import swig from 'swig'
 
 
@@ -32,7 +30,6 @@ export function init(el, context, config, mediator) {
 function usedata(resp, el, config) {
   //  var mainHTML3 = mainHTML.replace(/%assetPath%/g,config.assetPath);
     el.innerHTML = swig.render(mainHTML, { locals: { content: resp } });
-    ai2htmlscript();
     listenforresize(el);
 }
 
@@ -42,7 +39,6 @@ function listenforresize(el) {
     
                     var iframes = Array.prototype.slice.call(el.getElementsByTagName("iframe"));
 //                    var iframeslist = iframes.array.prototype.slice();
-                    console.log(iframes);
                     
                     iframes.forEach(function(iframe) {
                         

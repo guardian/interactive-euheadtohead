@@ -1,40 +1,40 @@
 import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
 import embedHTML from './text/embed.html!text'
+import swig from 'swig'
 
 var topicid;
 
-window.init = function init(el, config) {
-    iframeMessenger.enableAutoResize();
-    var options = getParameterByName("topicid"); 
-   
-    el.innerHTML = embedHTML;
+function getParameterByName( name ) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
 
+window.init = function init(el, config) {
+    var options = getParameterByName("topicid"); 
        reqwest({
-        url: 'http://interactive.guim.co.uk/docsdata-test/1ZstSkj9MqXTlxTxNfcZ6rvvvDxMOAG-pt0eWS5b-TBw.json',
+        url: 'http://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
         type: 'json',
         crossOrigin: true,
         success: function(resp) {
             usedata(resp, el, options);
         }
     });
+       iframeMessenger.enableAutoResize();
+ 
 };
 
 
 function usedata(resp,el,options) {
-    var selldiv = document.getElementById("sell");
-    var topics = resp.topics;
-    topics.forEach(function(t) {
-        if (t.topicname == options) {
-            console.log(t.topicname)
-            console.log(document);
-            selldiv.innerHTML = t.topicsell;
-        }
+   var matchingtopic;
+   resp.topics.forEach(function(topic) {
+    if (topic.topicname == options) {
+        console.log(topic);
+        matchingtopic = topic;
+    }        
     }, this);
-    
+    console.dir(matchingtopic);
+  el.innerHTML = swig.render(embedHTML, { locals: { topic: matchingtopic } });
+
 }
 
-function getParameterByName( name ) {
-    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
