@@ -13,7 +13,7 @@ function getParameterByName( name ) {
 window.init = function init(el, config) {
     var options = getParameterByName("topicid"); 
        reqwest({
-        url: 'http://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
+        url: 'https://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
         type: 'json',
         crossOrigin: true,
         success: function(resp) {
