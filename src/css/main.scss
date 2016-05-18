@@ -89,6 +89,7 @@ h4 {
 
 .remain {
     flex: 1;
+    flex-shrink: 0;
     min-width: 220px;
    }
    
@@ -109,6 +110,7 @@ h4 {
 
 .leave {
   flex: 1;
+  flex-shrink: 0;
   margin-right: 2em;
   min-width: 220px;
 }
@@ -147,12 +149,15 @@ color: #ffbb00;
 
 .analysistextwrapper {
      flex: 1;
+     flex-shrink: 0;
      min-width: 15em;
      padding-right: 1em;
 }
 
 .graphwrapper {
     flex: 2;
+    flex-shrink: 0;
+
     min-width: 380px;
     min-height: 150px;
 }
@@ -162,4 +167,8 @@ iframe {
     @media (max-width: 500px) {
         width:90%;
     }
+}
+
+.euref-sell {
+    @include fs-headline(2);
 }
