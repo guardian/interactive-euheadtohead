@@ -7,7 +7,7 @@ import swig from 'swig'
 
 
 
-var shareFn = share('Interactive title', 'http://gu.com/p/URL', '#Interactive');
+var shareFn = share('Brexit numbers game; how to draw opposite conclusions from the same data', 'http://gu.com/p/4jxfk','','', '');
 
 export function init(el, context, config, mediator) {
 
@@ -21,16 +21,17 @@ export function init(el, context, config, mediator) {
         }
     });
 
-    [].slice.apply(el.querySelectorAll('.interactive-share')).forEach(shareEl => {
-        var network = shareEl.getAttribute('data-network');
-        shareEl.addEventListener('click', () => shareFn(network));
-    });
+   
 }
 
 function usedata(resp, el, config) {
   //  var mainHTML3 = mainHTML.replace(/%assetPath%/g,config.assetPath);
     el.innerHTML = swig.render(mainHTML, { locals: { content: resp } });
     listenforresize(el);
+     [].slice.apply(el.querySelectorAll('.interactive-share')).forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+        shareEl.addEventListener('click', () => shareFn(network));
+    });
 }
 
 
