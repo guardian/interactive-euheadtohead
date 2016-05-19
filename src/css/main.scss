@@ -39,6 +39,7 @@ h2 {
 }
 
 h4 {
+    margin-top:0px;
     margin-bottom: 2px;
 }
 
@@ -93,13 +94,13 @@ h4 {
 .remain {
     flex: 1;
     flex-shrink: 0;
-    flex-basis: 380px;
-    min-width: 380px;
+    flex-basis: 220px;
+    min-width: 220px;
     max-width: 380px;
    }
 
 .euref-cell.leave {
-    @media (min-width:500px) {
+    @media (min-width:1150px) {
     border-right: 1px solid lightgrey;
     padding-right: 18%;
     }
@@ -125,9 +126,9 @@ h4 {
 .leave {
   flex: 1;
   flex-shrink: 0;
-  flex-basis: 380px;
+  flex-basis: 220px;
   margin-right: 2em;
-  min-width: 380px;
+  min-width: 220px;
   max-width: 380px;
 }
 
