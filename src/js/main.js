@@ -13,7 +13,7 @@ export function init(el, context, config, mediator) {
 
 
     reqwest({
-        url: 'https://interactive.guim.co.uk/docsdata-test/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
+        url: 'https://interactive.guim.co.uk/docsdata/153byDXhhdV95xg8HCBejAFZrThPMrk2jD7gdhRlsGCA.json',
         type: 'json',
         crossOrigin: true,
         success: function (resp) {

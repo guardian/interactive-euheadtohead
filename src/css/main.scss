@@ -9,33 +9,16 @@
     --remain-accent: #ff9b0b;
 }
 
+.topicheader {
+    margin-bottom: 0.83em;
+}
+
 em {
     font-style: normal;
 }
 
 div {
     @include fs-bodyCopy(1);
-   padding-bottom: 1em;
-}
-
-h1 {
-    @include fs-headline(3);
-    font-size: 2.5em;
-    line-height: 1em;
-    font-weight: 300;
-    margin-bottom: 0.3em;
-    
-    @media (max-width: 500px) {
-        font-size: 32px;
-        line-height: 34px;
-    }
-}
-
-h2 {
-    @include fs-headline(2);
-    color: #767676;
-    font-weight: 300;
-    margin-bottom: 0.3em;
 }
 
 h4 {
@@ -43,17 +26,10 @@ h4 {
     margin-bottom: 2px;
 }
 
-.sharing {
-    padding-top: 1em;
-}
-
-.contents {
-    max-width:740px; 
-}
-
 .euref-attribution {
     @include fs-bodyCopy(1);
     font-size:0.9em;
+
 }
 
 .euref-quote {
@@ -64,7 +40,6 @@ h4 {
      margin-top: 0px;
      font-weight: 200;
      font-size: 1.8em; 
-
 }
 
 .euref-source {
@@ -81,28 +56,28 @@ h4 {
     height: 10px;
 } 
 
-
-
 .statementswrapper {
-    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 
-.remain {
-    flex: 1;
-    flex-shrink: 0;
-    flex-basis: 220px;
-    min-width: 220px;
-    max-width: 380px;
-   }
+
+.euref-cell {
+    padding-bottom: 1em;
+}
 
 .euref-cell.leave {
+      flex: 1;
+  flex-shrink: 0;
+  flex-basis: 220px;
+  margin-right: 5px;
+  min-width: 220px;
+  max-width: 380px;
     @media (min-width:1150px) {
     border-right: 1px solid lightgrey;
-    padding-right: 18%;
+    padding-right: 10%;
     }
 }
 
@@ -123,14 +98,19 @@ h4 {
     color: var(--leave-accent);
 }
 
-.leave {
-  flex: 1;
-  flex-shrink: 0;
-  flex-basis: 220px;
-  margin-right: 2em;
-  min-width: 220px;
-  max-width: 380px;
-}
+.euref-cell.remain {
+    flex: 1;
+    flex-shrink: 0;
+    flex-basis: 220px;
+    min-width: 220px;
+    max-width: 380px;
+     @media (min-width:1150px) {
+    padding-left: 10px;
+    }
+     }
+   
+
+
 
 .remain-header {
 
@@ -143,8 +123,9 @@ h4 {
 
 .analysiswrapper{
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap-reverse; 
     margin-top: 50px;   
+    padding-bottom: 1em;
 }
 
 .analysiskicker {
@@ -161,6 +142,7 @@ h4 {
      flex-shrink: 0;
      flex-basis: 15em;
      min-width: 15em;
+    padding-bottom: 1em;
      
      padding-right: 1em;
 }
@@ -170,8 +152,9 @@ h4 {
     flex-shrink: 0;
     flex-basis:380px;
     min-width: 380px;
-    min-height: 150px;
-    @media (min-width:540px) {
+    max-width: 620px;
+    padding-bottom: 10px;    
+ @media (min-width:540px) {
         flex-basis: 540px;
         min-width: 540px;
     } 
@@ -190,9 +173,13 @@ iframe {
 
 .euref-topic {
     border-top: 1px solid lightgrey;
-    margin-bottom: 80px;
+    margin-bottom: 70px;
+    padding-top: 20px;
 }
 
+
+
 .euref-topic:first-of-type {
-    border-top: 0;    
+    border-top: 0;   
+    padding-top: 0; 
 }

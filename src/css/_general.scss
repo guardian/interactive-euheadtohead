@@ -2,7 +2,6 @@ body,
 figure.interactive {
     margin: 0;
     padding: 0;
-    background-color: #dcdcdc;
 }
 
 // Link styles don't exist on the app
@@ -23,10 +22,12 @@ a {
     margin: 0 auto;
     box-sizing: border-box;
     background-color: white;
-
-    padding: 10px;
+    padding-top: 0px;
+    padding-left: 0px;
+    
     @include mq(mobileLandscape) {
-        padding: 20px;
+        padding-top: 0px;
+        padding-left: 0px;
     }
 
     @each $bp in (tablet, desktop, leftCol, wide) {
@@ -34,6 +35,13 @@ a {
             max-width: map-get($mq-breakpoints, $bp);
         }
     }
+         @media (min-width: 71.25em) 
+   {
+      margin-left: 160px;
+      } 
+  @media (min-width: 81.25em) 
+    {
+      margin-left: 240px; }
 }
 
 .interactive-es6-headline {
@@ -49,10 +57,11 @@ a {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	margin-top: 24px;
+/*	margin-top: 24px;
 	li {
 		margin-bottom: 6px;
 	}
+    */
 }
 
 .fonts__egyptian { @include fs-headline(3); }
